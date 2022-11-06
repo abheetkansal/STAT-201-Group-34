@@ -14692,7 +14692,7 @@ The crime data set we will be using is from the <i>Crime Data Download<i/> publi
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[50]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[77]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-r"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">tidyverse</span><span class="p">)</span>
@@ -14715,10 +14715,11 @@ The crime data set we will be using is from the <i>Crime Data Download<i/> publi
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[51]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[78]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-r"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="s">"https://raw.githubusercontent.com/abheetkansal/STAT-201-Group-34/main/crimedata_csv_AllNeighbourhoods_2022.csv?token=GHSAT0AAAAAAB2TZOS5M4FIDIMLJPDUELMGY3ICOAQ"</span>
+<div class=" highlight hl-r"><pre><span></span><span class="c1"># Taking the url of the dataset and putting it in crime_data</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s">"https://raw.githubusercontent.com/abheetkansal/Dataset/main/crimedata_csv_AllNeighbourhoods_2022.csv"</span>
 <span class="n">crime_data</span> <span class="o">&lt;-</span> <span class="nf">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
 <span class="nf">head</span><span class="p">(</span><span class="n">crime_data</span><span class="p">)</span>
 </pre></div>
@@ -14787,14 +14788,16 @@ The crime data set we will be using is from the <i>Crime Data Download<i/> publi
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[52]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[79]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-r"><pre><span></span><span class="n">crime_data_cleaned</span> <span class="o">&lt;-</span> <span class="n">crime_data</span> <span class="o">%&gt;%</span> 
+<div class=" highlight hl-r"><pre><span></span><span class="c1">#Removing the na values and filtering the data for Crime Type Offence Against a Person" or "Other Theft and selecting the 2 columns TYPE and NEIGHBOURHOOD</span>
+<span class="n">crime_data_cleaned</span> <span class="o">&lt;-</span> <span class="n">crime_data</span> <span class="o">%&gt;%</span> 
     <span class="nf">filter</span><span class="p">(</span><span class="n">TYPE</span> <span class="o">==</span> <span class="s">"Offence Against a Person"</span> <span class="o">|</span> <span class="n">TYPE</span> <span class="o">==</span> <span class="s">"Other Theft"</span><span class="p">)</span><span class="o">%&gt;%</span>
     <span class="nf">filter</span><span class="p">(</span><span class="o">!</span><span class="nf">is.na</span><span class="p">(</span><span class="n">NEIGHBOURHOOD</span><span class="p">))</span> <span class="o">%&gt;%</span>
     <span class="nf">filter</span><span class="p">(</span><span class="o">!</span><span class="nf">is.na</span><span class="p">(</span><span class="n">TYPE</span><span class="p">))</span><span class="o">%&gt;%</span>
     <span class="nf">select</span><span class="p">(</span><span class="n">TYPE</span><span class="p">,</span><span class="n">NEIGHBOURHOOD</span><span class="p">)</span>
+
 <span class="nf">head</span><span class="p">(</span><span class="n">crime_data_cleaned</span><span class="p">)</span>
 </pre></div>
 
@@ -14845,10 +14848,11 @@ The crime data set we will be using is from the <i>Crime Data Download<i/> publi
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[53]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[80]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-r"><pre><span></span><span class="n">crime_data_cleaned2</span> <span class="o">&lt;-</span> <span class="n">crime_data_cleaned</span>  <span class="o">%&gt;%</span>
+<div class=" highlight hl-r"><pre><span></span><span class="c1"># Filtering the dataset with the crime in neighbourhoods Central Business District and West End as per the hypotheses</span>
+<span class="n">crime_data_cleaned2</span> <span class="o">&lt;-</span> <span class="n">crime_data_cleaned</span>  <span class="o">%&gt;%</span>
     <span class="nf">filter</span><span class="p">(</span><span class="n">NEIGHBOURHOOD</span> <span class="o">==</span> <span class="s">"Central Business District"</span> <span class="o">|</span> <span class="n">NEIGHBOURHOOD</span> <span class="o">==</span> <span class="s">"West End"</span><span class="p">)</span>
 <span class="nf">head</span><span class="p">(</span><span class="n">crime_data_cleaned2</span><span class="p">)</span>
 </pre></div>
@@ -14900,10 +14904,11 @@ The crime data set we will be using is from the <i>Crime Data Download<i/> publi
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[54]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[81]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-r"><pre><span></span><span class="n">crime_count</span><span class="o">&lt;-</span><span class="n">crime_data_cleaned2</span> <span class="o">%&gt;%</span>
+<div class=" highlight hl-r"><pre><span></span><span class="c1"># Counting the crime type per neighbourhood in question for crime with the crime type</span>
+<span class="n">crime_count</span><span class="o">&lt;-</span><span class="n">crime_data_cleaned2</span> <span class="o">%&gt;%</span>
     <span class="nf">group_by</span><span class="p">(</span><span class="n">NEIGHBOURHOOD</span><span class="p">)</span> <span class="o">%&gt;%</span>
     <span class="nf">count</span><span class="p">(</span><span class="n">TYPE</span><span class="p">)</span>
 <span class="n">crime_count</span>
@@ -14954,10 +14959,11 @@ The crime data set we will be using is from the <i>Crime Data Download<i/> publi
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[55]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[82]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-r"><pre><span></span><span class="n">obs_diff_prop1</span> <span class="o">&lt;-</span> <span class="n">crime_data_cleaned2</span> <span class="o">%&gt;%</span>
+<div class=" highlight hl-r"><pre><span></span><span class="c1"># Calculating difference in proportions</span>
+<span class="n">obs_diff_prop1</span> <span class="o">&lt;-</span> <span class="n">crime_data_cleaned2</span> <span class="o">%&gt;%</span>
     <span class="nf">specify</span><span class="p">(</span><span class="n">formula</span> <span class="o">=</span> <span class="n">TYPE</span> <span class="o">~</span> <span class="n">NEIGHBOURHOOD</span><span class="p">,</span> <span class="n">success</span> <span class="o">=</span> <span class="s">"Offence Against a Person"</span><span class="p">)</span> <span class="o">%&gt;%</span>
     <span class="nf">calculate</span><span class="p">(</span><span class="n">stat</span> <span class="o">=</span> <span class="s">"diff in props"</span><span class="p">,</span> <span class="n">order</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">"Central Business District"</span><span class="p">,</span> <span class="s">"West End"</span><span class="p">))</span>
 <span class="n">obs_diff_prop1</span>
@@ -15005,10 +15011,11 @@ The crime data set we will be using is from the <i>Crime Data Download<i/> publi
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[56]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[83]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-r"><pre><span></span><span class="n">obs_diff_prop2</span> <span class="o">&lt;-</span> <span class="n">crime_data_cleaned2</span> <span class="o">%&gt;%</span>
+<div class=" highlight hl-r"><pre><span></span><span class="c1"># Calculating difference in proportions</span>
+<span class="n">obs_diff_prop2</span> <span class="o">&lt;-</span> <span class="n">crime_data_cleaned2</span> <span class="o">%&gt;%</span>
     <span class="nf">specify</span><span class="p">(</span><span class="n">formula</span> <span class="o">=</span> <span class="n">TYPE</span> <span class="o">~</span> <span class="n">NEIGHBOURHOOD</span><span class="p">,</span> <span class="n">success</span> <span class="o">=</span> <span class="s">"Other Theft"</span><span class="p">)</span> <span class="o">%&gt;%</span>
     <span class="nf">calculate</span><span class="p">(</span><span class="n">stat</span> <span class="o">=</span> <span class="s">"diff in props"</span><span class="p">,</span> <span class="n">order</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">"Central Business District"</span><span class="p">,</span> <span class="s">"West End"</span><span class="p">))</span>
 <span class="n">obs_diff_prop2</span>
@@ -15056,15 +15063,16 @@ The crime data set we will be using is from the <i>Crime Data Download<i/> publi
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[57]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[84]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-r"><pre><span></span><span class="n">crime_data_count_plot</span> <span class="o">&lt;-</span> <span class="n">crime_count</span> <span class="o">%&gt;%</span>
+<div class=" highlight hl-r"><pre><span></span><span class="c1"># Plotting a bar graph plot for the count </span>
+<span class="n">crime_data_count_plot</span> <span class="o">&lt;-</span> <span class="n">crime_count</span> <span class="o">%&gt;%</span>
        <span class="nf">ggplot</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">TYPE</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">n</span><span class="p">))</span> <span class="o">+</span> 
        <span class="nf">geom_col</span><span class="p">()</span> <span class="o">+</span>
-       <span class="nf">ggtitle</span><span class="p">(</span><span class="s">"Frequency of Offence Against a Person"</span><span class="p">)</span> <span class="o">+</span>
-       <span class="nf">xlab</span><span class="p">(</span><span class="s">"Neighbourhood"</span><span class="p">)</span><span class="o">+</span>
-       <span class="nf">ylab</span><span class="p">(</span><span class="s">"Frequency"</span><span class="p">)</span>
+       <span class="nf">ggtitle</span><span class="p">(</span><span class="s">"Frequency"</span><span class="p">)</span> <span class="o">+</span>
+       <span class="nf">xlab</span><span class="p">(</span><span class="s">"Theft Type"</span><span class="p">)</span><span class="o">+</span>
+       <span class="nf">ylab</span><span class="p">(</span><span class="s">"Frequency Plot for Crime Type"</span><span class="p">)</span>
 
 <span class="n">crime_data_count_plot</span>
 </pre></div>
@@ -15087,7 +15095,7 @@ The crime data set we will be using is from the <i>Crime Data Download<i/> publi
 
 
 <div class="jp-RenderedSVG jp-OutputArea-output " data-mime-type="image/svg+xml">
-b'<svg width="504pt" height="504pt">\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  \n\n\n  \n  \n  \n  \n\n\n  \n  \n  \n  \n\n\n  \n  \n  \n  \n\n\n\n\n\n\n\n\n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n\n\n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n\n\n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n\n\n  \n  \n  \n  \n  \n  \n  \n  \n  \n\n\n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n\n\n</svg>\n'
+b'<svg width="504pt" height="504pt">\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  \n\n\n  \n  \n  \n  \n\n\n  \n  \n  \n  \n\n\n  \n  \n  \n  \n\n\n\n\n\n\n\n\n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n\n\n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n\n\n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n\n\n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n\n\n  \n  \n  \n  \n  \n  \n  \n  \n  \n\n\n</svg>\n'
 </div>
 
 </div>
@@ -15101,10 +15109,11 @@ b'<svg width="504pt" height="504pt">\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[58]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[85]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-r"><pre><span></span><span class="n">crime_data_plot</span> <span class="o">&lt;-</span> <span class="nf">ggpairs</span><span class="p">(</span><span class="n">crime_data_cleaned2</span><span class="p">)</span>
+<div class=" highlight hl-r"><pre><span></span><span class="c1"># Plotting a pair plot</span>
+<span class="n">crime_data_plot</span> <span class="o">&lt;-</span> <span class="nf">ggpairs</span><span class="p">(</span><span class="n">crime_data_cleaned2</span><span class="p">)</span>
 
 <span class="n">crime_data_plot</span>
 </pre></div>
@@ -15157,22 +15166,6 @@ https://www.cbc.ca/news/canada/british-columbia/sfu-study-vancouver-crime-impact
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-r"><pre><span></span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
 </div>
 </body>
 
