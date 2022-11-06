@@ -14791,7 +14791,7 @@ The crime data set we will be using is from the <i>Crime Data Download<i/> publi
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[79]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-r"><pre><span></span><span class="c1">#Removing the na values and filtering the data for Crime Type Offence Against a Person" or "Other Theft and selecting the 2 columns TYPE and NEIGHBOURHOOD</span>
+<div class=" highlight hl-r"><pre><span></span><span class="c1">#Removing the na values and filtering the data for Crime Type "Offence Against a Person" or "Other Theft and selecting the 2 columns TYPE and NEIGHBOURHOOD</span>
 <span class="n">crime_data_cleaned</span> <span class="o">&lt;-</span> <span class="n">crime_data</span> <span class="o">%&gt;%</span> 
     <span class="nf">filter</span><span class="p">(</span><span class="n">TYPE</span> <span class="o">==</span> <span class="s">"Offence Against a Person"</span> <span class="o">|</span> <span class="n">TYPE</span> <span class="o">==</span> <span class="s">"Other Theft"</span><span class="p">)</span><span class="o">%&gt;%</span>
     <span class="nf">filter</span><span class="p">(</span><span class="o">!</span><span class="nf">is.na</span><span class="p">(</span><span class="n">NEIGHBOURHOOD</span><span class="p">))</span> <span class="o">%&gt;%</span>
