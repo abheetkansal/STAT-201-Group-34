@@ -14630,6 +14630,20 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <p><strong>INTRODUCTION:</strong>
 Background Information:
 Vancouver’s crime rates have drastically increased recently, with a crime index of 39.18% (Numbeo, 2022), where crime levels of 40%-60% are considered moderate. This surge is due to the results of the loss of jobs caused by the pandemic (CBC News, 2022), increase in rent (CBC News, 2022), and the increased use of drugs often leading to homelessness, hence forcing many to commit crime in order to survive. It can then be deduced that more disadvantaged areas such as Downtown East Side, and South Vancouver neighborhoods (Webster, N.A.) would experience higher rates of crime. Hence, this results in an increasingly unsafe environment for Vancouver residents and requires increased surveillance by law enforcement in neighborhood areas.</p>
+<p>Comparing the neighbourhoods Kitsilano and Kerrisdale, since both are more residential neighbourhoods, it would be assumed to be relatively safer, however, Kitsilano crime rates are 19% higher than the national average (Areavibes, 2020), whereas Kerrisdale’s crime rates are 43% lower than the national average (Areavibes, 2020). This can be deduced due to Kitsilano having increased traffic due to increased commercialization in the introduction of stores and famous beaches, meaning more people aside from those who are residing there, so we can assume that there are higher crime rates.</p>
+<p><strong>Rows in the 2022 Crime Dataset</strong></p>
+<ul>
+<li><code>TYPE</code> : Crime Type</li>
+<li><code>YEAR</code> : Year crime was reported to occur</li>
+<li><code>MONTH</code> : Month crime was reported to occur</li>
+<li><code>DAY</code> : Day crime was reported to occur</li>
+<li><code>HOUR</code> : Hour of the day crime was reported to occur</li>
+<li><code>MINUTE</code> : Minute of the hour crime was reported to occur</li>
+<li><code>HUNDRED_BLOCK</code> : Location where crime was taken place</li>
+<li><code>NEIGHBOURHOOD</code> : Generalized neighbourhood where the crime took place</li>
+<li><code>X</code> : Coordinate values</li>
+<li><code>Y</code> : Coordinate values</li>
+</ul>
 
 </div>
 </div>
@@ -14641,11 +14655,15 @@ Vancouver’s crime rates have drastically increased recently, with a crime inde
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><strong>Research Question:</strong>
-<i>H<sub>θ</sub></i> = The proportion of theft from vehicles among all other types of crime is the same in Central Business District and West End in Vancouver<br> 
-                          
-      
-<i>H<sub>1</sub></i> = The proportion of theft from vehicles among all other types of crime in West End is less than the proportion in Central Business District in Vancouver</p>
+<p><strong>Research Question 1:</strong> </br>
+Let <i>p<sub>1</sub></i> be the proportion of offence against a person among all other types of crime in the Central Business District </br>
+Let <i>p<sub>2</sub></i> be the proportion of offence against a person among all other types of crime in the West End </br></p>
+<center><i>H<sub>θ</sub></i> : <i>p<sub>1</sub></i>=<i>p<sub>2</sub></i></center> 
+The proportion of offence against person among all other types of crime is the same in Central Business District and West End in Vancouver<br> 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</br>
+<center><i>H<sub>1</sub></i> : <i>p<sub>1</sub></i>><i>p<sub>2</sub></i> </center>
+<p>The proportion of offence against person among all other types of crime in West End is less than the proportion in Central Business District in Vancouver</p>
 
 </div>
 </div>
@@ -14666,7 +14684,7 @@ The crime data set we will be using is from the <i>Crime Data Download<i/> publi
   </tr>
   <tr>
     <td>Crime Type</td>
-    <td>&nbsp;&nbsp;&nbsp;Crime Against Person</td>
+    <td>&nbsp;&nbsp;&nbsp;Offence Against Person</td>
   </tr>
   <tr>
     <td>Year</td>
@@ -14678,6 +14696,8 @@ The crime data set we will be using is from the <i>Crime Data Download<i/> publi
           <ol type="1">
                <li><b>Central Buisness District</b></li>
                <li><b>West End</b></li>
+               <li><b>Kitsilano</b></li>
+               <li><b>Kerrisdale</b></li>
           </ol>
       </td>
   </tr>
@@ -14694,16 +14714,30 @@ The crime data set we will be using is from the <i>Crime Data Download<i/> publi
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p><b>METHODS:</b>  We’ll begin by using Hypothesis testing to assess the plausibility of the hypothesis, whether the data obtained from samples provides evidence against our claim that H. Through the infer workflow, which ensures tidy and clean data while using expressive grammar for the statistical inference, we will calculate the p-value. The p-value will be used to reject the null hypothesis H. Then through samples obtained through bootstrap resampling with replacement, which allows us to mimic sampling variation without the full population, we will calculate our point estimate of sample proportion and visualize the results with a confidence interval of 95% to conclude to stakeholders how confident we are with the results.</p>
+<p>We expect that the p-value to be smaller than the significance level to reject our null hypothesis. This can prove our point that the Central Business District has higher crime rates than the West End.</p>
+<p>The significance of this report and its final results can allow us to determine which areas require higher levels of law enforcement and increased levels of safety.</p>
+
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h4 id="Loading-packages">Loading packages<a class="anchor-link" href="#Loading-packages">&#182;</a></h4>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[17]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-r"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">tidyverse</span><span class="p">)</span>
@@ -14721,6 +14755,62 @@ The crime data set we will be using is from the <i>Crime Data Download<i/> publi
 </div>
 </div>
 
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
+<pre>── <span class="ansi-bold">Attaching packages</span> ─────────────────────────────────────── tidyverse 1.3.2 ──
+<span class="ansi-green-fg">✔</span> <span class="ansi-blue-fg">ggplot2</span> 3.3.6      <span class="ansi-green-fg">✔</span> <span class="ansi-blue-fg">purrr  </span> 0.3.4 
+<span class="ansi-green-fg">✔</span> <span class="ansi-blue-fg">tibble </span> 3.1.8      <span class="ansi-green-fg">✔</span> <span class="ansi-blue-fg">dplyr  </span> 1.0.10
+<span class="ansi-green-fg">✔</span> <span class="ansi-blue-fg">tidyr  </span> 1.2.1      <span class="ansi-green-fg">✔</span> <span class="ansi-blue-fg">stringr</span> 1.4.1 
+<span class="ansi-green-fg">✔</span> <span class="ansi-blue-fg">readr  </span> 2.1.2      <span class="ansi-green-fg">✔</span> <span class="ansi-blue-fg">forcats</span> 0.5.2 
+── <span class="ansi-bold">Conflicts</span> ────────────────────────────────────────── tidyverse_conflicts() ──
+<span class="ansi-red-fg">✖</span> <span class="ansi-blue-fg">dplyr</span>::<span class="ansi-green-fg">filter()</span> masks <span class="ansi-blue-fg">stats</span>::filter()
+<span class="ansi-red-fg">✖</span> <span class="ansi-blue-fg">dplyr</span>::<span class="ansi-green-fg">lag()</span>    masks <span class="ansi-blue-fg">stats</span>::lag()
+
+Attaching package: ‘testthat’
+
+
+The following object is masked from ‘package:dplyr’:
+
+    matches
+
+
+The following object is masked from ‘package:purrr’:
+
+    is_null
+
+
+The following objects are masked from ‘package:readr’:
+
+    edition_get, local_edition
+
+
+The following object is masked from ‘package:tidyr’:
+
+    matches
+
+
+Registered S3 method overwritten by &#39;GGally&#39;:
+  method from   
+  +.gg   ggplot2
+
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
 </div>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
@@ -14728,7 +14818,7 @@ The crime data set we will be using is from the <i>Crime Data Download<i/> publi
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>First we need to load all of the packages required to clean, wrangle, visualize etc our data into this Jupyter notebook</p>
+<p>First we need to load all of the packages required to clean, wrangle, visualize etc., our data into this Jupyter notebook</p>
 
 </div>
 </div>
@@ -14749,10 +14839,11 @@ The crime data set we will be using is from the <i>Crime Data Download<i/> publi
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[18]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-r"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="s">"https://raw.githubusercontent.com/abheetkansal/Dataset/main/crimedata_csv_AllNeighbourhoods_2022.csv"</span>
+<div class=" highlight hl-r"><pre><span></span><span class="c1">#Loading dataset from url</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s">"https://raw.githubusercontent.com/abheetkansal/Dataset/main/crimedata_csv_AllNeighbourhoods_2022.csv"</span>
 <span class="n">crime_data</span> <span class="o">&lt;-</span> <span class="nf">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
 <span class="nf">head</span><span class="p">(</span><span class="n">crime_data</span><span class="p">)</span>
 </pre></div>
@@ -14844,10 +14935,11 @@ The crime data set we will be using is from the <i>Crime Data Download<i/> publi
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[19]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-r"><pre><span></span><span class="n">crime_data_cleaned</span> <span class="o">&lt;-</span> <span class="n">crime_data</span> <span class="o">%&gt;%</span> 
+<div class=" highlight hl-r"><pre><span></span><span class="c1">#Cleaning dataset for the crime type in research question</span>
+<span class="n">crime_data_cleaned</span> <span class="o">&lt;-</span> <span class="n">crime_data</span> <span class="o">%&gt;%</span> 
     <span class="nf">filter</span><span class="p">(</span><span class="n">TYPE</span> <span class="o">==</span> <span class="s">"Offence Against a Person"</span> <span class="o">|</span> <span class="n">TYPE</span> <span class="o">==</span> <span class="s">"Other Theft"</span><span class="p">)</span><span class="o">%&gt;%</span>
     <span class="nf">filter</span><span class="p">(</span><span class="o">!</span><span class="nf">is.na</span><span class="p">(</span><span class="n">NEIGHBOURHOOD</span><span class="p">))</span> <span class="o">%&gt;%</span>
     <span class="nf">filter</span><span class="p">(</span><span class="o">!</span><span class="nf">is.na</span><span class="p">(</span><span class="n">TYPE</span><span class="p">))</span><span class="o">%&gt;%</span>
@@ -14926,10 +15018,11 @@ The crime data set we will be using is from the <i>Crime Data Download<i/> publi
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-r"><pre><span></span><span class="n">crime_data_cleaned2</span> <span class="o">&lt;-</span> <span class="n">crime_data_cleaned</span>  <span class="o">%&gt;%</span>
+<div class=" highlight hl-r"><pre><span></span><span class="c1">#Filtering the required neighbourhoods as per the research question 1</span>
+<span class="n">crime_data_cleaned2</span> <span class="o">&lt;-</span> <span class="n">crime_data_cleaned</span>  <span class="o">%&gt;%</span>
     <span class="nf">filter</span><span class="p">(</span><span class="n">NEIGHBOURHOOD</span> <span class="o">==</span> <span class="s">"Central Business District"</span> <span class="o">|</span> <span class="n">NEIGHBOURHOOD</span> <span class="o">==</span> <span class="s">"West End"</span><span class="p">)</span>
 <span class="nf">head</span><span class="p">(</span><span class="n">crime_data_cleaned2</span><span class="p">)</span>
 </pre></div>
@@ -14950,12 +15043,26 @@ The crime data set we will be using is from the <i>Crime Data Download<i/> publi
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>
-Error in crime_data_cleaned %&gt;% filter(NEIGHBOURHOOD == &#34;Central Business District&#34; | : could not find function &#34;%&gt;%&#34;
-Traceback:
-</pre>
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
+<table class="dataframe">
+<caption>A tibble: 6 × 2</caption>
+<thead>
+	<tr><th scope=col>TYPE</th><th scope=col>NEIGHBOURHOOD</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>Offence Against a Person</td><td>West End</td></tr>
+	<tr><td>Offence Against a Person</td><td>West End</td></tr>
+	<tr><td>Offence Against a Person</td><td>West End</td></tr>
+	<tr><td>Offence Against a Person</td><td>West End</td></tr>
+	<tr><td>Offence Against a Person</td><td>West End</td></tr>
+	<tr><td>Offence Against a Person</td><td>West End</td></tr>
+</tbody>
+</table>
+
 </div>
+
 </div>
 
 </div>
@@ -14990,7 +15097,7 @@ Traceback:
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[21]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-r"><pre><span></span><span class="n">crime_count</span><span class="o">&lt;-</span><span class="n">crime_data_cleaned2</span> <span class="o">%&gt;%</span>
@@ -15067,7 +15174,7 @@ Traceback:
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[22]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-r"><pre><span></span><span class="n">obs_diff_prop1</span> <span class="o">&lt;-</span> <span class="n">crime_data_cleaned2</span> <span class="o">%&gt;%</span>
@@ -15130,7 +15237,7 @@ Traceback:
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[23]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-r"><pre><span></span><span class="n">obs_diff_prop2</span> <span class="o">&lt;-</span> <span class="n">crime_data_cleaned2</span> <span class="o">%&gt;%</span>
@@ -15204,7 +15311,7 @@ Traceback:
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[24]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-r"><pre><span></span><span class="n">crime_data_count_plot</span> <span class="o">&lt;-</span> <span class="n">crime_count</span> <span class="o">%&gt;%</span>
@@ -15272,7 +15379,7 @@ b'<svg width="504pt" height="504pt">\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[25]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-r"><pre><span></span><span class="n">crime_data_plot</span> <span class="o">&lt;-</span> <span class="nf">ggpairs</span><span class="p">(</span><span class="n">crime_data_cleaned2</span><span class="p">)</span>
@@ -15335,7 +15442,7 @@ b'<svg width="504pt" height="504pt">\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[26]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-r"><pre><span></span><span class="nf">set.seed</span><span class="p">(</span><span class="m">20</span><span class="p">)</span>
@@ -15417,7 +15524,7 @@ b'<svg width="504pt" height="504pt">\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[27]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-r"><pre><span></span><span class="n">hypo_test_plot</span> <span class="o">&lt;-</span> <span class="n">null_dist</span> <span class="o">%&gt;%</span>
@@ -15483,7 +15590,7 @@ b'<svg width="504pt" height="504pt">\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[28]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-r"><pre><span></span><span class="n">p_value</span> <span class="o">&lt;-</span> <span class="n">null_dist</span> <span class="o">%&gt;%</span>
@@ -15546,7 +15653,8 @@ b'<svg width="504pt" height="504pt">\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>We now use the <code>infer</code> package to get the p-value. Since our p-value is 0 which is less than α = 0.05, we will reject the null hypothesis.</p>
+<p>We now use the <code>infer</code> package to get the p-value. Since our p-value is ~0 which is less than α = 0.05, we will reject the null hypothesis.</p>
+<p>This p-value of 0 is really a delegate of a very low likelihood (not truly 0) of computing a more-outrageous value than the noticed one under the invalid speculation, or in rundown, that our noticed value is exceptionally outrageous under the null. We could possibly get a hardly higher p-value by switching up the quantity of reps or test sizes, however this wouldn't change the understanding a lot; the p-value would in any case be illustrative of an exceptionally low likelihood of securing a more outrageous value.</p>
 
 </div>
 </div>
@@ -15567,7 +15675,7 @@ b'<svg width="504pt" height="504pt">\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[29]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[13]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-r"><pre><span></span><span class="nf">set.seed</span><span class="p">(</span><span class="m">20</span><span class="p">)</span>
@@ -15648,7 +15756,7 @@ b'<svg width="504pt" height="504pt">\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-r"><pre><span></span><span class="n">ci</span> <span class="o">&lt;-</span> <span class="n">bootstrap_dist</span> <span class="o">%&gt;%</span>
@@ -15721,13 +15829,14 @@ b'<svg width="504pt" height="504pt">\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[31]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[15]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-r"><pre><span></span><span class="n">ci_plot</span> <span class="o">&lt;-</span> <span class="n">bootstrap_dist</span> <span class="o">%&gt;%</span>
     <span class="nf">visualize</span><span class="p">()</span> <span class="o">+</span>
     <span class="nf">shade_confidence_interval</span><span class="p">(</span><span class="n">endpoints</span> <span class="o">=</span> <span class="n">ci</span><span class="p">)</span> <span class="o">+</span>
-    <span class="nf">ggtitle</span><span class="p">(</span><span class="s">"Bootstrap Distribution"</span><span class="p">)</span>
+    <span class="nf">ggtitle</span><span class="p">(</span><span class="s">"Bootstrap Distribution"</span><span class="p">)</span><span class="o">+</span>
+    <span class="nf">xlab</span><span class="p">(</span><span class="s">"Difference In Proportion"</span><span class="p">)</span>
 <span class="n">ci_plot</span>
 </pre></div>
 
@@ -15749,7 +15858,7 @@ b'<svg width="504pt" height="504pt">\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n
 
 
 <div class="jp-RenderedSVG jp-OutputArea-output " data-mime-type="image/svg+xml">
-b'<svg width="504pt" height="504pt">\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  \n\n\n  \n  \n\n\n  \n  \n\n\n  \n  \n\n\n\n\n\n\n\n\n\n\n  \n  \n  \n  \n  \n  \n\n\n  \n  \n  \n  \n  \n  \n\n\n  \n  \n  \n  \n  \n  \n\n\n  \n  \n  \n  \n  \n  \n\n\n  \n  \n  \n  \n\n\n  \n  \n  \n  \n  \n\n\n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n\n\n</svg>\n'
+b'<svg width="504pt" height="504pt">\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  \n\n\n  \n  \n\n\n  \n  \n\n\n  \n  \n\n\n\n\n\n\n\n\n\n\n  \n  \n  \n  \n  \n  \n\n\n  \n  \n  \n  \n  \n  \n\n\n  \n  \n  \n  \n  \n  \n\n\n  \n  \n  \n  \n  \n  \n\n\n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n\n\n  \n  \n  \n  \n  \n\n\n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n\n\n</svg>\n'
 </div>
 
 </div>
@@ -15765,7 +15874,7 @@ b'<svg width="504pt" height="504pt">\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>What this visualization shows is that we are 95% confident that the true proportion difference is between <code>-0.09025807</code> and <code>-0.02443591</code>. With that, we are 95% confident that the proportion of theft from vehicles among all other types of crime in West End is less than the proportion in Central Business District in Vancouver, accepting our alternative hypothesis.</p>
+<p>What this visualization shows is that we are 95% confident that the true proportion difference is between <code>-0.09025807</code> and <code>-0.02443591</code>. With that, we are 95% confident that the proportion of crimes against persons among all other types of crime in West End is less than the proportion in Central Business District in Vancouver, accepting our alternative hypothesis.</p>
 
 </div>
 </div>
@@ -15788,11 +15897,28 @@ b'<svg width="504pt" height="504pt">\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h5 id=""><a class="anchor-link" href="#">&#182;</a></h5><p><strong>Research Question:</strong>
-<i>H<sub>θ</sub></i> = The proportion of theft from vehicles among all other types of crime is the same in Kitsilano and Kerrisdale in Vancouver<br> 
-                          
-      
-<i>H<sub>1</sub></i> = The proportion of theft from vehicles among all other types of crime in Kerrisdale is less than the proportion in Kitsilano in Vancouver</p>
+<p><strong>Research Question 2:</strong></br>
+Let <i>p<sub>a</sub></i> be the proportion of offence against a person among all other types of crime in Kitsilano </br>
+Let <i>p<sub>b</sub></i> be the proportion of offence against a person among all other types of crime in Kerrisdale </br></p>
+<center><i>H<sub>θ</sub></i> : <i>p<sub>a</sub></i>=<i>p<sub>b</sub></i></center> 
+The proportion of offence against persons among all other types of crime is the same in Kitsilano and Kerrisdale in Vancouver<br> 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<center><i>H<sub>1</sub></i> : <i>p<sub>a</sub></i>><i>p<sub>b</sub></i> </center>
+The proportion of offence against persons among all other types of crime in Kerrisdale is less than the proportion in Kitsilano in Vancouver
+
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p><b>METHODS:</b>  We’ll begin by using Hypothesis testing to assess the plausibility of the hypothesis, whether the data obtained from samples provides evidence against our claim that H. Through the infer workflow, which ensures tidy and clean data while using expressive grammar for the statistical inference, we will calculate the p-value. The p-value will be used to reject the null hypothesis H. Then through samples obtained through bootstrap resampling with replacement, which allows us to mimic sampling variation without the full population, we will calculate our point estimate of sample proportion and visualize the results with a confidence interval of 95% to conclude to stakeholders how confident we are with the results.</p>
+<p>We expect that the p-value to be greater than the significance level to accept our null hypothesis. This can prove our point that the Kitsilano and Kerrisdale being residential areas have similar crime rate for offence against a person.</p>
 
 </div>
 </div>
@@ -15802,10 +15928,11 @@ b'<svg width="504pt" height="504pt">\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[68]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[16]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-r"><pre><span></span><span class="n">crime_data_clean</span> <span class="o">&lt;-</span> <span class="n">crime_data</span> <span class="o">%&gt;%</span> 
+<div class=" highlight hl-r"><pre><span></span><span class="c1">#Cleaning dataset for the crime type in research question</span>
+<span class="n">crime_data_clean</span> <span class="o">&lt;-</span> <span class="n">crime_data</span> <span class="o">%&gt;%</span> 
     <span class="nf">filter</span><span class="p">(</span><span class="n">TYPE</span> <span class="o">==</span> <span class="s">"Offence Against a Person"</span> <span class="o">|</span> <span class="n">TYPE</span> <span class="o">==</span> <span class="s">"Other Theft"</span><span class="p">)</span><span class="o">%&gt;%</span>
     <span class="nf">filter</span><span class="p">(</span><span class="o">!</span><span class="nf">is.na</span><span class="p">(</span><span class="n">NEIGHBOURHOOD</span><span class="p">))</span> <span class="o">%&gt;%</span>
     <span class="nf">filter</span><span class="p">(</span><span class="o">!</span><span class="nf">is.na</span><span class="p">(</span><span class="n">TYPE</span><span class="p">))</span><span class="o">%&gt;%</span>
@@ -15884,10 +16011,11 @@ b'<svg width="504pt" height="504pt">\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[69]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[17]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-r"><pre><span></span><span class="n">crime_data_clean2</span> <span class="o">&lt;-</span> <span class="n">crime_data_clean</span>  <span class="o">%&gt;%</span>
+<div class=" highlight hl-r"><pre><span></span><span class="c1">#Filtering dataset for the neighbouhood in research question 2</span>
+<span class="n">crime_data_clean2</span> <span class="o">&lt;-</span> <span class="n">crime_data_clean</span>  <span class="o">%&gt;%</span>
     <span class="nf">filter</span><span class="p">(</span><span class="n">NEIGHBOURHOOD</span> <span class="o">==</span> <span class="s">"Kitsilano"</span> <span class="o">|</span> <span class="n">NEIGHBOURHOOD</span> <span class="o">==</span> <span class="s">"Kerrisdale"</span><span class="p">)</span>
 <span class="nf">head</span><span class="p">(</span><span class="n">crime_data_clean2</span><span class="p">)</span>
 </pre></div>
@@ -15962,7 +16090,7 @@ b'<svg width="504pt" height="504pt">\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[70]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[18]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-r"><pre><span></span><span class="n">crime_count2</span> <span class="o">&lt;-</span> <span class="n">crime_data_clean2</span> <span class="o">%&gt;%</span>
@@ -16039,7 +16167,7 @@ b'<svg width="504pt" height="504pt">\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[71]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[19]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-r"><pre><span></span><span class="n">obs_diff_props1</span> <span class="o">&lt;-</span> <span class="n">crime_data_clean2</span> <span class="o">%&gt;%</span>
@@ -16102,7 +16230,7 @@ b'<svg width="504pt" height="504pt">\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[72]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[20]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-r"><pre><span></span><span class="n">obs_diff_props2</span> <span class="o">&lt;-</span> <span class="n">crime_data_clean2</span> <span class="o">%&gt;%</span>
@@ -16176,7 +16304,7 @@ b'<svg width="504pt" height="504pt">\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[73]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[21]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-r"><pre><span></span><span class="n">crime_data_count_plot2</span> <span class="o">&lt;-</span> <span class="n">crime_count2</span> <span class="o">%&gt;%</span>
@@ -16244,7 +16372,7 @@ b'<svg width="504pt" height="504pt">\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[22]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-r"><pre><span></span><span class="n">crime_data_plot2</span> <span class="o">&lt;-</span> <span class="nf">ggpairs</span><span class="p">(</span><span class="n">crime_data_clean2</span><span class="p">)</span>
@@ -16268,12 +16396,11 @@ b'<svg width="504pt" height="504pt">\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>
-Error in ggpairs(crime_data_clean2): could not find function &#34;ggpairs&#34;
-Traceback:
-</pre>
+
+<div class="jp-RenderedSVG jp-OutputArea-output " data-mime-type="image/svg+xml">
+b'<svg width="504pt" height="504pt">\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  \n  \n  \n  \n\n\n\n\n\n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n\n\n\n\n\n  \n  \n  \n  \n\n\n\n\n\n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n\n\n\n\n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n\n\n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n\n\n\n\n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n\n\n  \n  \n  \n  \n  \n  \n  \n  \n  \n\n\n  \n\n\n  \n  \n  \n\n\n  \n  \n  \n\n\n  \n  \n  \n\n\n\n\n\n\n  \n\n\n  \n  \n  \n\n\n  \n  \n  \n\n\n  \n  \n  \n\n\n\n\n\n\n  \n\n\n  \n  \n  \n\n\n  \n  \n  \n\n\n  \n  \n  \n\n\n\n\n\n\n</svg>\n'
 </div>
+
 </div>
 
 </div>
@@ -16308,7 +16435,7 @@ Traceback:
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[75]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[23]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-r"><pre><span></span><span class="nf">set.seed</span><span class="p">(</span><span class="m">20</span><span class="p">)</span>
@@ -16390,7 +16517,7 @@ Traceback:
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[76]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[24]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-r"><pre><span></span><span class="n">hypo_test_plot2</span> <span class="o">&lt;-</span> <span class="n">null_dist2</span> <span class="o">%&gt;%</span>
@@ -16419,7 +16546,7 @@ Traceback:
 
 
 <div class="jp-RenderedSVG jp-OutputArea-output " data-mime-type="image/svg+xml">
-b'<svg width="504pt" height="504pt">\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  \n\n\n  \n  \n\n\n  \n  \n\n\n  \n  \n\n\n\n\n\n\n\n\n\n\n\n  \n  \n  \n  \n  \n\n\n  \n  \n  \n  \n  \n\n\n  \n  \n  \n  \n\n\n  \n  \n  \n  \n\n\n  \n  \n  \n  \n\n\n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n\n\n  \n  \n  \n  \n  \n\n\n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n\n\n</svg>\n'
+b'<svg width="504pt" height="504pt">\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  \n\n\n  \n  \n\n\n  \n  \n\n\n  \n  \n\n\n\n\n\n\n\n\n\n\n\n  \n  \n  \n  \n  \n\n\n  \n  \n  \n  \n  \n\n\n  \n  \n  \n  \n\n\n  \n  \n  \n  \n\n\n  \n  \n  \n  \n\n\n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n\n\n  \n  \n  \n  \n  \n\n\n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n\n\n</svg>\n'
 </div>
 
 </div>
@@ -16456,7 +16583,7 @@ b'<svg width="504pt" height="504pt">\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[77]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[25]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-r"><pre><span></span><span class="n">p_value2</span> <span class="o">&lt;-</span> <span class="n">null_dist2</span> <span class="o">%&gt;%</span>
@@ -16529,7 +16656,7 @@ b'<svg width="504pt" height="504pt">\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[78]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[26]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-r"><pre><span></span><span class="nf">set.seed</span><span class="p">(</span><span class="m">20</span><span class="p">)</span>
@@ -16610,7 +16737,7 @@ b'<svg width="504pt" height="504pt">\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[79]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[27]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-r"><pre><span></span><span class="n">ci2</span> <span class="o">&lt;-</span> <span class="n">bootstrap_dist2</span> <span class="o">%&gt;%</span>
@@ -16683,13 +16810,14 @@ b'<svg width="504pt" height="504pt">\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[80]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[28]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-r"><pre><span></span><span class="n">ci_plot2</span> <span class="o">&lt;-</span> <span class="n">bootstrap_dist2</span> <span class="o">%&gt;%</span>
     <span class="nf">visualize</span><span class="p">()</span> <span class="o">+</span>
     <span class="nf">shade_confidence_interval</span><span class="p">(</span><span class="n">endpoints</span> <span class="o">=</span> <span class="n">ci2</span><span class="p">)</span> <span class="o">+</span>
-    <span class="nf">ggtitle</span><span class="p">(</span><span class="s">"Bootstrap Distribution"</span><span class="p">)</span>
+    <span class="nf">ggtitle</span><span class="p">(</span><span class="s">"Bootstrap Distribution"</span><span class="p">)</span><span class="o">+</span>
+    <span class="nf">xlab</span><span class="p">(</span><span class="s">"Difference in Proportion"</span><span class="p">)</span>
 <span class="n">ci_plot2</span>
 </pre></div>
 
@@ -16711,7 +16839,7 @@ b'<svg width="504pt" height="504pt">\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n
 
 
 <div class="jp-RenderedSVG jp-OutputArea-output " data-mime-type="image/svg+xml">
-b'<svg width="504pt" height="504pt">\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  \n\n\n  \n  \n\n\n  \n  \n\n\n  \n  \n\n\n\n\n\n\n\n\n\n  \n  \n  \n  \n\n\n  \n  \n  \n\n\n  \n  \n  \n\n\n  \n  \n  \n  \n\n\n  \n  \n  \n  \n  \n\n\n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n\n\n</svg>\n'
+b'<svg width="504pt" height="504pt">\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  \n\n\n  \n  \n\n\n  \n  \n\n\n  \n  \n\n\n\n\n\n\n\n\n\n  \n  \n  \n  \n\n\n  \n  \n  \n\n\n  \n  \n  \n\n\n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n\n\n  \n  \n  \n  \n  \n\n\n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n\n\n</svg>\n'
 </div>
 
 </div>
@@ -16750,12 +16878,25 @@ b'<svg width="504pt" height="504pt">\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><strong>METHODS: PLAN</strong>
-We’ll begin be using Hypothesis testing to assess the plausibility of the hypothesis, whether the data obtained from samples provides evidence against our claim that H. Through the infer workflow, which ensures tidy and clean data while using expressive grammar for the statistical inference, we will calculate the p-value. The p-value will be used to reject the null hypothesis H. Then through samples obtained through bootstrap resampling with replacement, which allows us to mimic sampling variation without the full population, we will calculate our point estimate of sample proportion and visualize the results with a confidence interval of 95% to conclude to stakeholders how confident we are with the results.</p>
-<p>We expect that the p-value to be smaller than the significance level to reject H. This can prove our point that the Central Business District has higher crime rates than the West End.</p>
-<p>The significance of this report and its final results can allow us to determine which areas require higher levels of law enforcement and increased levels of safety.</p>
-<p><strong>REFERENCES:</strong>
-CBC News. 2022. New study shows higher incidence of violent crime in poor Vancouver neighborhoods,theft in wealthier ones. [assessed 2022 Oct 29].
+<p><strong>FINDINGS FOR RESEARCH QUESTION 1:</strong></br></p>
+<p>With reference to our first hypothesis test, it was concluded that our p-value is ~0, and since our p-value is less than our signifiance level of α = 0.05, we will reject the null hypothesis:<center><i>H<sub>θ</sub></i> : <i>p<sub>1</sub></i>=<i>p<sub>2</sub></i></center> 
+Since the p-value ~ 0, it suggest that it is highly unlikely for the null hypothesis will occur, where the p-value is defined as how frequent it is to observe the data from the experiment if null hypothesis is true.</p>
+<p>As a result we are 95% confident that the proportion of crimes against persons among all other types of crime in the Central Business District is higher than the rates in West End, accepting our alternative hypothesis.</p>
+</br>
+<p><strong>FINDINGS FOR RESEARCH QUESTION 2:</strong></br></p>
+<p>With reference to our second hypothesis test, it was concluded that our p-value is 0.3525, and since our p-value is greater than our signifiance level of α = 0.05, we will accept the null hypothesis:<center><i>H<sub>θ</sub></i> : <i>p<sub>a</sub></i>=<i>p<sub>b</sub></i></center> 
+Since the p-value = 0.3525, it suggest that it is highly likely that our null hypothesis is true, where the p-value is defined as how frequent it is to observe the data from the experiment if null hypothesis is true.</p>
+<p>As a result we are 95% confident that the proportion of crimes against persons among all other types of crime in Kitsilano is similar to the crime rates rates in Kerrisdale, accepting our null hypothesis.</p>
+</br>
+<p><strong>APPLICATION OF FINDINGS:</strong></br></p>
+<p>From the findings, it is proven in our first analysis that the Central Business District has higher rates of crimes compared to West End, so more enforcement should be implemented in that area to control the crimes happening. As for our second analysis, Kitsilano and Kerrisdale, it was deduced that both neighbourhoods have about the same proportions of crimes. Despite the previous hypothesis in our introduction, that Kitsilano will have a higher crime rate due to increased commercialization. After comparing it to Kerrisdale, it can be suggested that commercialization may not impact the rate of crime to a large extent, since both proportions are the same. As a result, it implies that other factors would be the cause. Hence, the cause of crime can be a future topic of research and study, in order to control the rates of crimes, such as comparing the rates of crimes from other years, to find the pressing causation and correlation of crime, such as the pandemic, rise in rent, etc., which can be done through conducted surveys.</p>
+</br>
+<p><strong>REFERENCES:</strong> <br></p>
+<p>Areavibes, 2020. Kerrisdale, Vancouver, BC Crime. [assessed 2022 Nov 11].
+https://www.areavibes.com/vancouver-bc/kerrisdale/crime/</p>
+<p>Areavibes, 2020. Kitsilano, Vancouver, BC Crime. [assessed 2022 Nov 11].
+https://www.areavibes.com/vancouver-bc/kitsilano/crime/</p>
+<p>CBC News. 2022. New study shows higher incidence of violent crime in poor Vancouver neighborhoods,theft in wealthier ones. [assessed 2022 Oct 29].
 https://www.cbc.ca/news/canada/british-columbia/sfu-study-vancouver-crime-impacts-1.6323902#:~:text=Andresen%20says%20this%20can%20be,happened%20normally%2C%22%20he%20said.</p>
 <p>The Canadian Press. 2017. Soaring rents push homelessness to all-time high in vancouver’s DTES. [assessed 2022 Oct 29]. https://www.cbc.ca/news/canada/british-columbia/rent-increase-dtes-vancouver-homelessness-1.4034161.</p>
 <p>Numbeo. Crime in Vancouver, Canada. Numbeo. [assessed 2022 Oct 29]. https://www.numbeo.com/crime/in/Vancouver.</p>
@@ -16764,6 +16905,22 @@ https://www.cbc.ca/news/canada/british-columbia/sfu-study-vancouver-crime-impact
 </div>
 </div>
 </div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-r"><pre><span></span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
 </div>
 </body>
 
